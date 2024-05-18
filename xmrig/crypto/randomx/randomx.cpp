@@ -91,6 +91,16 @@ RandomX_ConfigurationArqma::RandomX_ConfigurationArqma()
 	ScratchpadL3_Size = 262144;
 }
 
+RandomX_ConfigurationEquilibria::RandomX_ConfigurationEquilibria()
+{
+  ArgonIterations = 1;
+  ArgonSalt = "RandomXEQ\x01";
+  ProgramIterations = 1024;
+  ProgramCount = 4;
+  ScratchpadL2_Size = 131072;
+  ScratchpadL3_Size = 262144;
+}
+
 RandomX_ConfigurationSafex::RandomX_ConfigurationSafex()
 {
 	ArgonSalt = "RandomSFX\x01";
@@ -394,6 +404,7 @@ typedef void(randomx::JitCompilerX86::* InstructionGeneratorX86_2)(const randomx
 RandomX_ConfigurationMonero RandomX_MoneroConfig;
 RandomX_ConfigurationWownero RandomX_WowneroConfig;
 RandomX_ConfigurationArqma RandomX_ArqmaConfig;
+RandomX_ConfigurationEquilibria RandomX_EquilibriaConfig;
 RandomX_ConfigurationSafex RandomX_SafexConfig;
 RandomX_ConfigurationKeva RandomX_KevaConfig;
 RandomX_ConfigurationScala RandomX_ScalaConfig;
