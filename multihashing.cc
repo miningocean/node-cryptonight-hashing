@@ -72,7 +72,6 @@ int rx2id(xmrig::Algorithm::Id algo) {
   switch (algo) {
       case xmrig::Algorithm::RX_0:     return 0;
       case xmrig::Algorithm::RX_ARQ:   return 1;
-      case xmrig::Algorithm::RX_XEQ:   return 2;
       //case xmrig::Algorithm::RX_WOW:   return 2;
       //case xmrig::Algorithm::RX_GRAFT: return 3;
       //case xmrig::Algorithm::RX_SFX:   return 4;
