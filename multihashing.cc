@@ -113,6 +113,9 @@ void init_rx(const uint8_t* seed_hash_data, xmrig::Algorithm::Id algo) {
         case xmrig::Algorithm::RX_ARQ:
             randomx_apply_config(RandomX_ArqmaConfig);
             break;
+        case xmrig::Algorithm::RX_XEQ:
+            randomx_apply_config(RandomX_EquilibriaConfig);
+            break;
         case xmrig::Algorithm::RX_GRAFT:
             randomx_apply_config(RandomX_GraftConfig);
             break;
@@ -199,6 +202,7 @@ NAN_METHOD(randomx) {
         //case 18: xalgo = xmrig::Algorithm::RX_LOKI; break;
         case 19: xalgo = xmrig::Algorithm::RX_KEVA; break;
         case 20: xalgo = xmrig::Algorithm::RX_GRAFT; break;
+        case 22: xalgo = xmrig::Algorithm::RX_XEQ; break;
         default: xalgo = xmrig::Algorithm::RX_0;
     }
 
