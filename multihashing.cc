@@ -26,6 +26,7 @@
 #include "crypto/kawpow/KPHash.h"
 #include "3rdparty/libethash/ethash.h"
 #include "crypto/ghostrider/ghostrider.h"
+#include "crypto/flex/flex.h"
 
 extern "C" {
 #include "crypto/randomx/panthera/KangarooTwelve.h"
@@ -223,6 +224,10 @@ void ghostrider(const unsigned char* data, long unsigned int size, unsigned char
     xmrig::ghostrider::hash(data, size, output, ctx, nullptr);
 }
 
+void flex(const unsigned char* data, long unsigned int size, unsigned char* output, cryptonight_ctx** ctx, long unsigned int) {
+    flex_hash((const char*)data, (char*)output, ctx);
+}
+
 static xmrig::cn_hash_fun get_cn_fn(const int algo) {
   switch (algo) {
     case 0:  return FN(CN_0);
@@ -239,6 +244,7 @@ static xmrig::cn_hash_fun get_cn_fn(const int algo) {
     case 16: return FNA(CN_DOUBLE);
     case 17: return FNA(CN_CCX);
     case 18: return ghostrider;
+    case 19: return flex;
     default: return FN(CN_R);
   }
 }

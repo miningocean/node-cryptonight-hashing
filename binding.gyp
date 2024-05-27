@@ -102,6 +102,18 @@
                 "xmrig/crypto/ghostrider/sph_whirlpool.c",
                 "xmrig-override/crypto/ghostrider/ghostrider.cpp",
 
+                "xmrig/crypto/flex/flex.cpp",
+                "xmrig/crypto/flex/cryptonote/cryptonight_dark.c",
+                "xmrig/crypto/flex/cryptonote/cryptonight_dark_lite.c",
+                "xmrig/crypto/flex/cryptonote/cryptonight_fast.c",
+                "xmrig/crypto/flex/cryptonote/cryptonight_lite.c",
+                "xmrig/crypto/flex/cryptonote/cryptonight_turtle.c",
+                "xmrig/crypto/flex/cryptonote/cryptonight_turtle_lite.c",
+                "xmrig/crypto/flex/cryptonote/crypto/oaes_lib.c",
+                "xmrig/crypto/flex/cryptonote/crypto/aesb.c",
+                "xmrig/crypto/flex/cryptonote/crypto/hash.c",
+                "xmrig/crypto/flex/cryptonote/crypto/c_keccak.c",
+
                 "xmrig-override/crypto/kawpow/KPHash.cpp",
                 "xmrig/3rdparty/libethash/keccakf800.c",
                 "xmrig/3rdparty/libethash/ethash_internal.c",
