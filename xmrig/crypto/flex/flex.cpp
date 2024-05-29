@@ -24,12 +24,6 @@ extern "C" {
 #include "../ghostrider/sph_shabal.h"
 #include "../ghostrider/sph_whirlpool.h"
 #include "../ghostrider/sph_sha2.h"
-#include "cryptonote/cryptonight_dark.h"
-#include "cryptonote/cryptonight_dark_lite.h"
-#include "cryptonote/cryptonight_fast.h"
-#include "cryptonote/cryptonight_lite.h"
-#include "cryptonote/cryptonight_turtle.h"
-#include "cryptonote/cryptonight_turtle_lite.h"
 }
 #include <stdio.h>
 
@@ -145,7 +139,6 @@ void flex_hash(const char* input, char* output, cryptonight_ctx** ctx) {
 	sph_shabal512_context ctx_shabal;
 	sph_whirlpool_context ctx_whirlpool;
 	sph_sha256_context ctx_sha;
-        hard_coded_eb = 6;
 	void *in = (void*) input;
 	int size = 80;
 	sph_keccak512_init(&ctx_keccak);
@@ -195,37 +188,37 @@ void flex_hash(const char* input, char* output, cryptonight_ctx** ctx) {
 			cnAlgo = 14; // skip cn hashing for this loop iteration
 		}
 		//selection cnAlgo. if a CN algo is selected then core algo will not be selected
-                cn_hash_fun f = nullptr;
+                cn_hash_fun f;
 		switch(cnAlgo)
 		{
 		 case CNDark:
-                        cryptonightdark_hash((const char*)in, (char*)hash, size, 1); 
-                        //f = CnHash::fn(Algorithm::CN_GR_0, av, Assembly::AUTO); 
+                        //cryptonightdark_hash((const char*)in, (char*)hash, size, 1); 
+                        f = CnHash::fn(Algorithm::CN_GR_0, av, Assembly::AUTO); 
 			break;
 		 case CNDarklite:
-                        cryptonightdarklite_hash((const char*)in, (char*)hash, size, 1);
-                        //f = CnHash::fn(Algorithm::CN_GR_1, av, Assembly::AUTO);
+                        //cryptonightdarklite_hash((const char*)in, (char*)hash, size, 1);
+                        f = CnHash::fn(Algorithm::CN_GR_1, av, Assembly::AUTO);
 			break;
 		 case CNFast:
-                        cryptonightfast_hash((const char*)in, (char*)hash, size, 1);
-                        //f = CnHash::fn(Algorithm::CN_GR_2, av, Assembly::AUTO);
+                        //cryptonightfast_hash((const char*)in, (char*)hash, size, 1);
+                        f = CnHash::fn(Algorithm::CN_GR_2, av, Assembly::AUTO);
 			break;
 		 case CNLite:
-                        cryptonightlite_hash((const char*)in, (char*)hash, size, 1);
-                        //f = CnHash::fn(Algorithm::CN_GR_3, av, Assembly::AUTO);
+                        //cryptonightlite_hash((const char*)in, (char*)hash, size, 1);
+                        f = CnHash::fn(Algorithm::CN_GR_3, av, Assembly::AUTO);
 			break;
 		 case CNTurtle:
-                        cryptonightturtle_hash((const char*)in, (char*)hash, size, 1); 
-                        //f = CnHash::fn(Algorithm::CN_GR_4, av, Assembly::AUTO);
+                        //cryptonightturtle_hash((const char*)in, (char*)hash, size, 1); 
+                        f = CnHash::fn(Algorithm::CN_GR_4, av, Assembly::AUTO);
 			break;
 		 case CNTurtlelite:
-                        cryptonightturtlelite_hash((const char*)in, (char*)hash, size, 1);
-                        //f = CnHash::fn(Algorithm::CN_GR_5, av, Assembly::AUTO);
+                        //cryptonightturtlelite_hash((const char*)in, (char*)hash, size, 1);
+                        f = CnHash::fn(Algorithm::CN_GR_5, av, Assembly::AUTO);
 			break;
                  default:
                         f = nullptr;
 		}
-                if (f) f((const uint8_t*)in, size, (uint8_t*)hash, ctx, 0);
+                if (f) f((const uint8_t*)in, size, (uint8_t*)hash, ctx, 101);
 
 		//selection core algo
 		switch (algo) {
@@ -307,5 +300,4 @@ void flex_hash(const char* input, char* output, cryptonight_ctx** ctx) {
 	sph_keccak256(&ctx_keccak, in, size);
 	sph_keccak256_close(&ctx_keccak, hash);
 	memcpy(output, hash, 32);
-        hard_coded_eb = 1;
 }

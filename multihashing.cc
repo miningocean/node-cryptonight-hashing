@@ -27,6 +27,7 @@
 #include "3rdparty/libethash/ethash.h"
 #include "crypto/ghostrider/ghostrider.h"
 #include "crypto/flex/flex.h"
+#include "crypto/ghostrider/sph_keccak.h"
 
 extern "C" {
 #include "crypto/randomx/panthera/KangarooTwelve.h"
@@ -225,7 +226,9 @@ void ghostrider(const unsigned char* data, long unsigned int size, unsigned char
 }
 
 void flex(const unsigned char* data, long unsigned int size, unsigned char* output, cryptonight_ctx** ctx, long unsigned int) {
+    hard_coded_eb = 6;
     flex_hash((const char*)data, (char*)output, ctx);
+    hard_coded_eb = 1;
 }
 
 static xmrig::cn_hash_fun get_cn_fn(const int algo) {
